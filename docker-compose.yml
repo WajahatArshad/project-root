@@ -6,19 +6,23 @@ services:
     environment:
       - PORT=5000
       - CLIENT_URL=http://localhost:5174
+      - NODE_ENV=production
     networks:
       - app-network
+    restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    build: 
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:5000
     ports:
       - "5174:5174"
-    environment:
-      - VITE_API_URL=http://localhost:5000
     depends_on:
       - backend
     networks:
       - app-network
+    restart: unless-stopped
 
 networks:
   app-network:
