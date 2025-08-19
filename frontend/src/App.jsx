@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL;
-
+console.log(API_URL)
 function App() {
   const [items, setItems] = useState([]);
   const [name, setName] = useState('');
